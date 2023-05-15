@@ -1,0 +1,22 @@
+name: Parameterized Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      raw_table_name:
+        description: 'Raw table name'
+        required: true
+        default: 'default value'
+      package_id:
+        description: 'Package ID'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Display Parameters
+        run: |
+          echo "Raw table name: ${{ github.event.inputs.raw_table_name }}"
+          echo "Package ID: ${{ github.event.inputs.package_id }}"
